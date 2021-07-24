@@ -1,14 +1,18 @@
-#!/bin/bash
-#author: Jamie Hurd
-# Use only pure Bourne syntax for portability with shell scripts!
-# https://developer.apple.com/library/archive/documentation/OpenSource/Conceptual/ShellScripting/shell_scripts/shell_scripts.html
+#!/bin/sh
+
+#  grepTestWithMac.sh
+#   Use only pure Bourne syntax for portability with shell scripts!
+#
+#  Created by Jamie Hurd on 7/24/21.
+#
 
 
 #Prompt for strings to search
-read -p -r grepArr "Enter words to search separated by 'space' : "
-#The -r switch appears to throw things off on Mac
+printf "Enter words to search separated by 'space' :"
+#Separate by space
+IFS=" "
 
-#Iterate across the array of search criteria/strings
+#Iterate across an array of search criteria/strings
 for i in "${grepArr[@]}"
 do
 #Call another bash to get the dir
@@ -24,3 +28,4 @@ do echo "$i"  | grep  -inr " ${grepArr[*]}" | less -R > "${OUTPUT_FILE}"; done
 mkdir "${OUTPUT_DIR}";
 mv $OUTPUT_FILE "/$OUTPUT_DIR"
 done
+
