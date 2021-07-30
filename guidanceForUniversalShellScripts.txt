@@ -1,0 +1,20 @@
+https://www.quora.com/What-shell-script-can-be-used-across-all-UNIX-like-platforms-I-was-told-that-bash-is-not-universal-so-should-be-avoided?share=1
+
+Profile photo for Yury Adamov
+Yury Adamov
+, Linux addict
+Answered April 24, 2019
+
+Currently, the statement that bash is not universal is somewhat misleading. All the major UNIX platforms (FreeBSD, Mac, Linux, MSYS and Cygwin on Windows, HP UX, Solaris, etc.) has it. The only exception is embedded systems.
+
+However, if you want the answer to your question, there is a subset of bash commands which is included in POSIX standard. Even embedded systems support POSIX standard, so if you restrict yourself to POSIX subset of shell commands then your script will be more universal. You can try some minimal POSIX compliant shells, like /bin/dash or busybox to check if your script is working without bash extensions.
+
+Here is some bash extensions that should be avoided in POSIX compliant scripts:
+
+a) Use of [[ ]] operator for conditions. POSIX only support [ ].
+
+b) Use of string manipulations ${filename:.exe:} is not supported in POSIX
+
+c) Use of arithmetics with (()). POSIX supports some arithmetic evaluations, but not that extended.
+
+2K viewsView 18 upvotesView shares

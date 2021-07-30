@@ -13,10 +13,8 @@ OUTPUT_DIR="grep"
 OUTPUT_FILE="grep.txt"
 
 #Drill into each subdirectory of this parent up to six folders down
-# Use a while loop to control the search
 find . -maxdepth 6 -type d -print0 | while IFS= read -rd '' dir;
 do echo "$i"  | grep  -inr " ${grepArr[*]}" | less -R > "${OUTPUT_FILE}"; done
 mkdir "${OUTPUT_DIR}";
 mv $OUTPUT_FILE "/$OUTPUT_DIR"
 done
-#cd "$OUTPUT_DIR" || exit
